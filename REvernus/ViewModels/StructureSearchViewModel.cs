@@ -14,6 +14,7 @@ using EVEStandard.Enumerations;
 using REvernus.Core;
 using REvernus.Core.ESI;
 using REvernus.Models;
+using REvernus.Models.Interfaces;
 using Universe = EVEStandard.API.Universe;
 
 namespace REvernus.ViewModels
@@ -124,7 +125,7 @@ namespace REvernus.ViewModels
                                 if (structure != null)
                                 {
                                     var playerStructure =
-                                        StructureToPlayerStructure(structureId, structure, SelectedCharacter, false);
+                                        StructureToPlayerStructure(structureId, (StationWrapper)structure, SelectedCharacter, false);
                                     structureList.Add(playerStructure);
                                 }
                             }));
@@ -146,7 +147,7 @@ namespace REvernus.ViewModels
                             var structure = await Structures.GetStructureInfoAsync(auth, structureId, SearchBoxText);
                             if (structure != null)
                             {
-                                var playerStructure = StructureToPlayerStructure(structureId, structure, SelectedCharacter, true);
+                                var playerStructure = StructureToPlayerStructure(structureId, (StationWrapper)structure, SelectedCharacter, true);
                                 structureList.Add(playerStructure);
                             }
                         }));
@@ -163,15 +164,15 @@ namespace REvernus.ViewModels
             }
         }
 
-        private static PlayerStructure StructureToPlayerStructure(long structureId, Structure structure, REvernusCharacter selectedCharacter, bool isPublic)
+        private static PlayerStructure StructureToPlayerStructure(long structureId, StationWrapper structure, REvernusCharacter selectedCharacter, bool isPublic)
         {
             return new PlayerStructure()
             {
                 StationId = structureId,
                 OwnerId = structure.OwnerId,
-                StationName = structure.Name,
+                StationName = structure.StationName,
                 SolarSystemId = structure.SolarSystemId,
-                StationTypeId = Convert.ToInt64(structure.TypeId),
+                StationTypeId = Convert.ToInt64(structure.StationTypeId),
                 AddedBy = selectedCharacter.CharacterDetails.CharacterId,
                 AddedAt = null,
                 Enabled = null,

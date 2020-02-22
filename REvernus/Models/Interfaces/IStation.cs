@@ -1,6 +1,6 @@
 ﻿namespace REvernus.Models.Interfaces
 {
-    internal interface IStation
+    public interface IStation
     {
         long StationId { get; }
         string StationName { get; }
