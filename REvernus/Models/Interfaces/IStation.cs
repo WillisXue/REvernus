@@ -4,8 +4,7 @@
     {
         long StationId { get; }
         string StationName { get; }
-        int SolarSystemId { get; }
+        long SolarSystemId { get; }
         long StationTypeId { get; }
-        bool IsPublic { get; }
     }
 }

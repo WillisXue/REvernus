@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using REvernus.Models.Interfaces;
 
 namespace REvernus.Models.EveDbModels
 {
-    public partial class StaStations
+    public partial class StaStations : IStation
     {
         public long StationId { get; set; }
         public double? Security { get; set; }
@@ -11,9 +12,9 @@ namespace REvernus.Models.EveDbModels
         public double? MaxShipVolumeDockable { get; set; }
         public long? OfficeRentalCost { get; set; }
         public long? OperationId { get; set; }
-        public long? StationTypeId { get; set; }
+        public long StationTypeId { get; set; }
         public long? CorporationId { get; set; }
-        public long? SolarSystemId { get; set; }
+        public long SolarSystemId { get; set; }
         public long? ConstellationId { get; set; }
         public long? RegionId { get; set; }
         public string StationName { get; set; }

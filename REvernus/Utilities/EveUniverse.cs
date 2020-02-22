@@ -35,28 +35,6 @@ namespace REvernus.Utilities
             }
         }
 
-        public static async Task<List<long>> GetStructuresInRange(long structureId, int range)
-        {
-
-            var solarSystemId = 0;
-            if (StructureManager.TryGetNpcStation(structureId, out var station) && station != null)
-            {
-                if (station.SolarSystemId != null) solarSystemId = (int) station.SolarSystemId;
-            }
-            else if (StructureManager.TryGetPlayerStructure(structureId, out var playerStructure) && playerStructure != null)
-            {
-                solarSystemId = playerStructure.SolarSystemId;
-            }
-            else
-            {
-                var result = await EsiData.EsiClient.Universe.GetStructureInfoV2Async(CharacterManager.PublicAuthDto, structureId);
-                if (result.RemainingErrors != 0) return null;
-                if (station != null) solarSystemId = result.Model.SolarSystemId;
-            }
-
-            return GetStructuresInRange(solarSystemId, range);
-        }
-
         /// <summary>
         /// This method returns all NPC stations and player structures within range specified. Does not check public structures.
         /// </summary>

@@ -13,7 +13,7 @@ namespace REvernus.Models
         public long StationId { get; set; }
         public string StationName { get; set; }
         public int OwnerId { get; set; }
-        public int SolarSystemId { get; set; }
+        public long SolarSystemId { get; set; }
         public long StationTypeId { get; set; }
         public long? AddedBy { get; set; }
         public DateTime? AddedAt { get; set; }
