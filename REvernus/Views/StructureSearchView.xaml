@@ -60,7 +60,7 @@
                           IsEnabled="{Binding IsEnabled}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Structure" DisplayMemberBinding="{Binding Name}" Width="400" />
+                            <GridViewColumn Header="Structure" DisplayMemberBinding="{Binding StationName}" Width="400" />
                         </GridView>
                     </ListView.View>
                     <ListView.ItemContainerStyle>

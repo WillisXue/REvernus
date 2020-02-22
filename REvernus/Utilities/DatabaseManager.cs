@@ -97,7 +97,7 @@ namespace REvernus.Utilities
                                             "addedBy INTEGER," +
                                             "addedAt DATETIME," +
                                             "enabled INTEGER," +
-                                            "isPublic INTEGER)";
+                                            "IsPublic INTEGER)";
                 sqLiteCommand.ExecuteNonQuery();
                 sqLiteCommand.Parameters.Clear();
 

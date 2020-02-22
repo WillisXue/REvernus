@@ -167,15 +167,15 @@ namespace REvernus.ViewModels
         {
             return new PlayerStructure()
             {
-                StructureId = structureId,
+                StationId = structureId,
                 OwnerId = structure.OwnerId,
-                Name = structure.Name,
+                StationName = structure.Name,
                 SolarSystemId = structure.SolarSystemId,
-                TypeId = structure.TypeId,
+                StationTypeId = Convert.ToInt64(structure.TypeId),
                 AddedBy = selectedCharacter.CharacterDetails.CharacterId,
                 AddedAt = null,
                 Enabled = null,
-                isPublic = isPublic
+                IsPublic = isPublic
             };
         }
 

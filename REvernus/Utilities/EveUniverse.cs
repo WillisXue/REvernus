@@ -81,7 +81,7 @@ namespace REvernus.Utilities
                         returnList.AddRange(npcStations.Select(s => s.StationId));
 
                         var playerStations = StructureManager.Structures.Where(s => s.SolarSystemId == solarSystemId);
-                        returnList.AddRange(playerStations.Select(s => s.StructureId));
+                        returnList.AddRange(playerStations.Select(s => s.StationId));
 
                         tempList.AddRange(db.MapJumps.Where(j => j.StargateId == systemId).Select(j => (int) j.DestinationId).ToList());
                     }

@@ -49,15 +49,15 @@ namespace REvernus.Core
                     {
                         var structure = new PlayerStructure
                         {
-                            StructureId = (long)reader[0],
-                            Name = (string)reader[1],
+                            StationId = (long)reader[0],
+                            StationName = (string)reader[1],
                             OwnerId = Convert.ToInt32((long)reader[2]),
                             SolarSystemId = Convert.ToInt32((long)reader[3]),
-                            TypeId = Convert.ToInt32((long?)reader[4]),
+                            StationTypeId = Convert.ToInt32((long?)reader[4]),
                             AddedBy = (long?)reader[5],
                             AddedAt = (DateTime?)reader[6],
                             Enabled = Convert.ToBoolean((long?)reader[7]),
-                            isPublic = Convert.ToBoolean((long?)reader[8])
+                            IsPublic = Convert.ToBoolean((long?)reader[8])
                         };
                         Structures.Add(structure);
                     }
@@ -82,19 +82,19 @@ namespace REvernus.Core
                 try
                 {
                     using var sqLiteCommand = new SQLiteCommand($"INSERT OR REPLACE INTO structures " +
-                                                                $"(structureId, name, ownerId, solarSystemId, typeId, addedBy, addedAt, enabled, isPublic) " +
-                                                                $"VALUES (@structureId, @name, @ownerId, @solarSystemId, @typeId, @addedBy, @addedAt, @enabled, @isPublic)",
+                                                                $"(structureId, name, ownerId, solarSystemId, typeId, addedBy, addedAt, enabled, IsPublic) " +
+                                                                $"VALUES (@structureId, @name, @ownerId, @solarSystemId, @typeId, @addedBy, @addedAt, @enabled, @IsPublic)",
                         connection);
 
-                    sqLiteCommand.Parameters.AddWithValue("@structureId", structure.StructureId);
-                    sqLiteCommand.Parameters.AddWithValue("@name", structure.Name);
+                    sqLiteCommand.Parameters.AddWithValue("@structureId", structure.StationId);
+                    sqLiteCommand.Parameters.AddWithValue("@name", structure.StationName);
                     sqLiteCommand.Parameters.AddWithValue("@ownerId", structure.OwnerId);
                     sqLiteCommand.Parameters.AddWithValue("@solarSystemId", structure.SolarSystemId);
-                    sqLiteCommand.Parameters.AddWithValue("@typeId", structure.TypeId);
+                    sqLiteCommand.Parameters.AddWithValue("@typeId", structure.StationTypeId);
                     sqLiteCommand.Parameters.AddWithValue("@addedBy", structure.AddedBy);
                     sqLiteCommand.Parameters.AddWithValue("@addedAt", DateTime.UtcNow);
                     sqLiteCommand.Parameters.AddWithValue("@enabled", true);
-                    sqLiteCommand.Parameters.AddWithValue("@isPublic", structure.isPublic);
+                    sqLiteCommand.Parameters.AddWithValue("@IsPublic", structure.IsPublic);
 
                     sqLiteCommand.CommandTimeout = 1;
                     sqLiteCommand.ExecuteNonQuery();
@@ -123,7 +123,7 @@ namespace REvernus.Core
                 foreach (var structure in structures)
                 {
                     using var command = new SQLiteCommand("DELETE FROM structures WHERE structureId = @structureId", connection);
-                    command.Parameters.AddWithValue("@structureId", ((PlayerStructure) structure).StructureId);
+                    command.Parameters.AddWithValue("@structureId", ((PlayerStructure) structure).StationId);
                     command.ExecuteNonQuery();
                 }
             }
@@ -141,7 +141,7 @@ namespace REvernus.Core
 
         public static bool TryGetPlayerStructure(long structureId, out PlayerStructure playerStructure)
         {
-            playerStructure = Structures.FirstOrDefault(s => s.StructureId == structureId);
+            playerStructure = Structures.FirstOrDefault(s => s.StationId == structureId);
             return playerStructure != null;
         }
 
@@ -169,7 +169,7 @@ namespace REvernus.Core
             }
             if (StructureManager.TryGetPlayerStructure(structureId, out var structure))
             {
-                return structure.Name;
+                return structure.StationName;
             }
             else
             {

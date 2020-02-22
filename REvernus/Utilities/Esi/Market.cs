@@ -163,7 +163,7 @@ namespace REvernus.Utilities.Esi
 
                 try
                 {
-                    var firstResult = await EsiData.EsiClient.Market.ListOrdersInStructureV1Async(auth, structure.StructureId);
+                    var firstResult = await EsiData.EsiClient.Market.ListOrdersInStructureV1Async(auth, structure.StationId);
                     var maxPages = firstResult.MaxPages;
 
                     foreach (var marketOrder in firstResult.Model)
@@ -181,7 +181,7 @@ namespace REvernus.Utilities.Esi
                                 using var a1 = Status.GetNewStatusHandle();
                                 try
                                 {
-                                    var result = await EsiData.EsiClient.Market.ListOrdersInStructureV1Async(auth, structure.StructureId, i1);
+                                    var result = await EsiData.EsiClient.Market.ListOrdersInStructureV1Async(auth, structure.StationId, i1);
                                     foreach (var marketOrder in result.Model)
                                     {
                                         ordersHashSet.Add(marketOrder);

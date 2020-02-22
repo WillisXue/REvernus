@@ -30,11 +30,11 @@
             <ListView x:Name="CharacterListView" Margin="5" ItemsSource="{Binding Source={x:Static p:StructureManager.Structures}, Mode=Default}" >
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding StationName}"/>
                         <GridViewColumn Header="Added At" DisplayMemberBinding="{Binding AddedAt}"/>
                         <GridViewColumn Header="Added By" DisplayMemberBinding="{Binding AddedBy, Converter={StaticResource CharacterIdToNameConverter}}"/>
-                        <GridViewColumn Header="Type" DisplayMemberBinding="{Binding TypeId, Converter={StaticResource TypeIdToNameConverter}}"/>
-                        <GridViewColumn Header="Structure Id" DisplayMemberBinding="{Binding StructureId}"/>
+                        <GridViewColumn Header="Type" DisplayMemberBinding="{Binding StationTypeId, Converter={StaticResource TypeIdToNameConverter}}"/>
+                        <GridViewColumn Header="Structure Id" DisplayMemberBinding="{Binding StationId}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
